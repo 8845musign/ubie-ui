@@ -6,6 +6,9 @@ import styles from './Button.module.css';
 import { VariantIcon } from './VariantIcon';
 import type { ButtonProps } from './ButtonTypes';
 
+/**
+ * 主にユーザーがアクションを実行するために使用
+ */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {

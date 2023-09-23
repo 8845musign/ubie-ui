@@ -1,6 +1,10 @@
 import { ButtonHTMLAttributes, ReactNode, AnchorHTMLAttributes, ReactElement } from 'react';
 
 export type BaseProps = {
+  /**
+   * 種類
+   * @default primary
+   */
   variant?:
     | 'primary'
     | 'secondary'
@@ -11,14 +15,33 @@ export type BaseProps = {
     | 'authGoogle'
     | 'authLINE'
     | 'authApple';
+  /**
+   * サイズ
+   * @default large
+   */
   size?: 'large' | 'medium' | 'small';
+  /**
+   * ブロックレイアウトとして表示するかどうか。ブロックレイアウトの場合、横幅100%を占有
+   */
   block?: boolean;
+  /**
+   * アイコン
+   */
   icon?: 'default' | ReactNode;
+  /**
+   * Fixedアイコン
+   */
   fixedIcon?: 'default' | ReactNode;
+  /**
+   * 後方配置のアイコン
+   */
   suffixIcon?: 'default' | ReactNode;
 };
 
 export type OnlyLinkButtonProps = {
+  /**
+   * ルートの要素を別のコンポーネントに
+   */
   render?: ReactElement;
 };
 

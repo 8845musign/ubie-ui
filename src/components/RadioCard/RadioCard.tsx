@@ -1,26 +1,40 @@
 'use client';
 
 import { clsx } from 'clsx';
-import { FC, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import styles from './RadioCard.module.css';
+import type { FC, ReactNode } from 'react';
 
 type Props = Required<Pick<React.InputHTMLAttributes<HTMLInputElement>, 'id' | 'name' | 'value' | 'children'>> &
   React.InputHTMLAttributes<HTMLInputElement> & {
+    /**
+     * 必ずページ内でユニークな名前をつける
+     */
+    id: string;
+    /**
+     * グループ化（排他制御）したい要素には同じ名前をつける
+     */
+    name: string;
+    /**
+     * onChangeに渡す関数内で取得したい値
+     */
+    value: string | number | readonly string[];
+    /**
+     * 表示するラベル。テキストまたは要素を渡すことができる
+     */
+    children: ReactNode;
+    /**
+     * marginBottomを持つか否か
+     */
     hasMarginBottom?: boolean;
+    /**
+     * ブロックレイアウトとして表示するかどうか。ブロックレイアウトの場合、横幅100%を占有
+     */
     block?: boolean;
   };
 
 /**
- * アクセシビリティに配慮したラジオボタン。
- * TimeQuestionContentのような、選択した後自動で遷移しないタイプのラジオボタン（選択してもなにもおきないボタン）に使用する。
- *
- * @param id 必ずページ内でユニークな名前をつける。
- * @param name グループ化（排他制御）したい要素には同じ名前をつける。
- * @param value onChangeに渡す関数内で取得したい値
- * @param children 表示するラベルテキスト
- * @param hasMarginBottom marginBottomを持つか否か
- * @param block 幅100%
- * @param otherProps onFocusなど、inputタグに渡せるpropsはなんでも。
+ * Accessibilityに配慮したカード状のラジオボタン
  */
 const RadioCard: FC<Props> = forwardRef<HTMLInputElement, Props>(
   ({ id, name, value, children, className, hasMarginBottom = true, block = false, ...otherProps }, ref) => {

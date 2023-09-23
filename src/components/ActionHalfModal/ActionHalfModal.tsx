@@ -11,14 +11,42 @@ import { Button } from '../Button/Button';
 type Opacity = 'normal' | 'darker';
 
 type BaseProps = {
+  /**
+   * モーダルを閉じた場合のイベント
+   * @returns void
+   */
   onClose: () => void;
+  /**
+   * ヘッダーに表示する見出しテキスト
+   */
   header?: string;
+  /**
+   * プライマリーアクションボタンの色
+   */
   primaryActionColor?: 'primary' | 'alert';
+  /**
+   * 閉じるボタンのテキスト
+   */
   closeLabel?: string;
+  /**
+   * オーバーレイの透過度
+   */
   overlayOpacity?: Opacity;
+  /**
+   * 閉じるボタンを表示するかどうか
+   */
   showClose?: boolean;
+  /**
+   * モーダルを開くかどうか
+   */
   open?: boolean;
+  /**
+   * openを無視してモーダルを開いたままにするかどうか。アニメーションライブラリとの連携で、ActionHalfModal自身が開閉に関与しない場合に使用
+   */
   isStatic?: boolean;
+  /**
+   * モーダルをフルスクリーンで表示するかどうか
+   */
   fullscreen?: boolean;
 };
 
@@ -26,6 +54,9 @@ type Props = BaseProps &
   AllOrNone<{ onPrimaryAction: () => void; primaryActionLabel: string }> &
   AllOrNone<{ onSecondaryAction: () => void; secondaryActionLabel: string }>;
 
+/**
+ * 画面の下部を占有する、アクションを実行するためのモーダルダイアログ
+ */
 export const ActionHalfModal: FC<PropsWithChildren<Props>> = ({
   children,
   onClose,
